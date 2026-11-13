@@ -1,0 +1,343 @@
+{
+  "$schema": "https://ograf.ebu.io/v1/specification/json-schemas/graphics/schema.json",
+  "id": "rolling-credits",
+  "version": "3.0.0",
+  "name": "Rolling Credits (integer px/frame)",
+  "description": "Film-style rolling credits moving an exact whole number of pixels per frame.",
+  "main": "rolling-credits.mjs",
+  "supportsRealTime": true,
+  "supportsNonRealTime": true,
+  "stepCount": 1,
+  "schema": {
+    "type": "object",
+    "properties": {
+      "credits": {
+        "type": "string",
+        "title": "Credits text",
+        "gddType": "multi-line",
+        "default": "# NORTHERN LIGHTS\n\n## Musicians\nVocals | Anna Example\nVocals | Mark Sample\nSaxophone | Peter Placeholder\nPiano | Laura Lorem\nGuitar | Oliver Ipsum\nBass | Robert Dolor\nDrums | Victor Amet\nPercussion | Andrew Consectetur\n\nDancers | Rita Adipiscing\n | Nick Elit\n\nStage Design & Lighting | Paul Tempor\nVisuals | Vlad Incididunt\n | Eddie Labore\nMake-up | Julia Magna\n\nTechnical Director | Ray Aliqua\nProduction Manager | Agnes Veniam\nSound Engineer | Eric Nostrud\nPyrotechnics | Casper Ullamco\n\nCamera Director | Karl Laboris\nDirector of Photography | Alex Nisi\nCamera Operators | John Aliquip\n | Ed Commodo\n | Edgar Consequat\n | Roland Duis\n | Michael Aute\n | Chris Irure\n\nBroadcast Sound | Glen Reprehenderit\n | Martin Voluptate\n\nEditors | Karl Laboris\n | Alex Nisi\n\n---\n\n## Special thanks\nEva Velit\nLiv Esse\nIda Cillum\nAl Fugiat\nNorm Nulla\nRenee Pariatur\n\n## Supported by\nExample Radio\nSample News\nPlaceholder FM",
+        "description": "# Title · ## Section · Role | Name · ' | Name' continues · empty line = gap · [space 80] exact gap · --- long gap · **bold** *italic*"
+      },
+      "pixelsPerFrame": {
+        "type": "integer",
+        "title": "Speed (px per frame)",
+        "minimum": 1,
+        "maximum": 40,
+        "default": 3
+      },
+      "frameRate": {
+        "type": "number",
+        "title": "Timeline fps",
+        "minimum": 1,
+        "maximum": 120,
+        "default": 25
+      },
+      "endMode": {
+        "type": "string",
+        "title": "Ending",
+        "enum": [
+          "Roll out of frame",
+          "Stop on last line"
+        ],
+        "default": "Roll out of frame"
+      },
+      "showInfo": {
+        "type": "boolean",
+        "title": "Show length + font check",
+        "default": false
+      },
+      "font": {
+        "type": "string",
+        "title": "Main font",
+        "enum": [
+          "Helvetica Neue",
+          "Helvetica",
+          "Arial",
+          "Avenir Next",
+          "Futura",
+          "Gill Sans",
+          "Optima",
+          "Inter",
+          "Montserrat",
+          "Roboto",
+          "Open Sans",
+          "Lato",
+          "Georgia",
+          "Times New Roman",
+          "Baskerville",
+          "Didot",
+          "Bodoni 72",
+          "Garamond",
+          "EB Garamond",
+          "Playfair Display",
+          "Courier New",
+          "System UI"
+        ],
+        "default": "Helvetica Neue"
+      },
+      "fontCustom": {
+        "type": "string",
+        "title": "Main font – other (type name)",
+        "default": ""
+      },
+      "nameFont": {
+        "type": "string",
+        "title": "Names – font",
+        "enum": [
+          "Main font",
+          "Helvetica Neue",
+          "Helvetica",
+          "Arial",
+          "Avenir Next",
+          "Futura",
+          "Gill Sans",
+          "Optima",
+          "Inter",
+          "Montserrat",
+          "Roboto",
+          "Open Sans",
+          "Lato",
+          "Georgia",
+          "Times New Roman",
+          "Baskerville",
+          "Didot",
+          "Bodoni 72",
+          "Garamond",
+          "EB Garamond",
+          "Playfair Display",
+          "Courier New",
+          "System UI"
+        ],
+        "default": "Main font"
+      },
+      "nameSize": {
+        "type": "number",
+        "title": "Names – size",
+        "minimum": 8,
+        "maximum": 200,
+        "default": 34
+      },
+      "nameWeight": {
+        "type": "string",
+        "title": "Names – weight",
+        "enum": [
+          "100 Thin",
+          "200 Extra Light",
+          "300 Light",
+          "400 Regular",
+          "500 Medium",
+          "600 Semibold",
+          "700 Bold",
+          "800 Extra Bold",
+          "900 Black"
+        ],
+        "default": "400 Regular"
+      },
+      "nameItalic": {
+        "type": "boolean",
+        "title": "Names – italic",
+        "default": false
+      },
+      "nameColor": {
+        "type": "string",
+        "title": "Names – colour",
+        "gddType": "color-rrggbb",
+        "pattern": "^#[0-9a-fA-F]{6}$",
+        "default": "#F2F2F2"
+      },
+      "roleFont": {
+        "type": "string",
+        "title": "Roles – font",
+        "enum": [
+          "Main font",
+          "Helvetica Neue",
+          "Helvetica",
+          "Arial",
+          "Avenir Next",
+          "Futura",
+          "Gill Sans",
+          "Optima",
+          "Inter",
+          "Montserrat",
+          "Roboto",
+          "Open Sans",
+          "Lato",
+          "Georgia",
+          "Times New Roman",
+          "Baskerville",
+          "Didot",
+          "Bodoni 72",
+          "Garamond",
+          "EB Garamond",
+          "Playfair Display",
+          "Courier New",
+          "System UI"
+        ],
+        "default": "Main font"
+      },
+      "roleSize": {
+        "type": "number",
+        "title": "Roles – size",
+        "minimum": 8,
+        "maximum": 200,
+        "default": 20
+      },
+      "roleWeight": {
+        "type": "string",
+        "title": "Roles – weight",
+        "enum": [
+          "100 Thin",
+          "200 Extra Light",
+          "300 Light",
+          "400 Regular",
+          "500 Medium",
+          "600 Semibold",
+          "700 Bold",
+          "800 Extra Bold",
+          "900 Black"
+        ],
+        "default": "400 Regular"
+      },
+      "roleTracking": {
+        "type": "number",
+        "title": "Roles – letter spacing",
+        "minimum": -100,
+        "maximum": 1000,
+        "default": 140
+      },
+      "roleUpper": {
+        "type": "boolean",
+        "title": "Roles – UPPERCASE",
+        "default": true
+      },
+      "roleColor": {
+        "type": "string",
+        "title": "Roles – colour",
+        "gddType": "color-rrggbb",
+        "pattern": "^#[0-9a-fA-F]{6}$",
+        "default": "#9E9E9E"
+      },
+      "sectionSize": {
+        "type": "number",
+        "title": "Sections ## – size",
+        "minimum": 8,
+        "maximum": 200,
+        "default": 20
+      },
+      "sectionWeight": {
+        "type": "string",
+        "title": "Sections ## – weight",
+        "enum": [
+          "100 Thin",
+          "200 Extra Light",
+          "300 Light",
+          "400 Regular",
+          "500 Medium",
+          "600 Semibold",
+          "700 Bold",
+          "800 Extra Bold",
+          "900 Black"
+        ],
+        "default": "600 Semibold"
+      },
+      "sectionTracking": {
+        "type": "number",
+        "title": "Sections ## – letter spacing",
+        "minimum": -100,
+        "maximum": 1000,
+        "default": 320
+      },
+      "sectionSpaceBefore": {
+        "type": "number",
+        "title": "Sections ## – space before",
+        "minimum": 0,
+        "maximum": 600,
+        "default": 64
+      },
+      "sectionSpaceAfter": {
+        "type": "number",
+        "title": "Sections ## – space after",
+        "minimum": 0,
+        "maximum": 600,
+        "default": 30
+      },
+      "sectionColor": {
+        "type": "string",
+        "title": "Sections ## – colour",
+        "gddType": "color-rrggbb",
+        "pattern": "^#[0-9a-fA-F]{6}$",
+        "default": "#FFFFFF"
+      },
+      "titleSize": {
+        "type": "number",
+        "title": "Title # – size",
+        "minimum": 8,
+        "maximum": 400,
+        "default": 88
+      },
+      "titleWeight": {
+        "type": "string",
+        "title": "Title # – weight",
+        "enum": [
+          "100 Thin",
+          "200 Extra Light",
+          "300 Light",
+          "400 Regular",
+          "500 Medium",
+          "600 Semibold",
+          "700 Bold",
+          "800 Extra Bold",
+          "900 Black"
+        ],
+        "default": "300 Light"
+      },
+      "titleTracking": {
+        "type": "number",
+        "title": "Title # – letter spacing",
+        "minimum": -100,
+        "maximum": 1000,
+        "default": 250
+      },
+      "titleSpaceAfter": {
+        "type": "number",
+        "title": "Title # – space after",
+        "minimum": 0,
+        "maximum": 600,
+        "default": 72
+      },
+      "columnGap": {
+        "type": "number",
+        "title": "Columns – gap",
+        "minimum": 0,
+        "maximum": 800,
+        "default": 56
+      },
+      "lineSpacing": {
+        "type": "number",
+        "title": "Line spacing (× size)",
+        "minimum": 0.8,
+        "maximum": 3,
+        "default": 1.42
+      },
+      "emptyLineGap": {
+        "type": "number",
+        "title": "Empty line gap",
+        "minimum": 0,
+        "maximum": 400,
+        "default": 56
+      }
+    }
+  },
+  "renderRequirements": [
+    {
+      "resolution": {
+        "width": {
+          "min": 320
+        },
+        "height": {
+          "min": 240
+        }
+      }
+    }
+  ]
+}
